@@ -1,0 +1,33 @@
+[
+    {   
+        "type":"circle",
+        "center":{"x":125,"y":125},
+        "radius":25
+    },   
+    {
+        "type":"line",
+        "p1":{"x":0,"y":0},
+        "p2":{"x":400,"y":400}
+
+    },
+    {
+        "type":"rect",
+        "top_left":[50,50],
+        "bottom_right":[100,100]
+    },    
+    {
+        "type":"rect",
+        "top_left":[150,50],
+        "bottom_right":[200,100]
+    },    
+    {
+        "type":"rect",
+        "top_left":[50,150],
+        "bottom_right":[100,200]
+    },    
+    {
+        "type":"rect",
+        "top_left":[150,150],
+        "bottom_right":[200,200]
+    }
+]

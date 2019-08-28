@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %} Paint {% endblock %}
+
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='paint.css')}}"></link> 
+{% endblock %}
+
+{% block content %}              
+<div style="display: flex;">                          
+    <div>
+        <canvas id="canvas" width="400px" height="400px"></canvas>
+    </div> 
+    <div id="properties">
+        <div>
+            <span>Properties</span>
+        </div>
+        <div>
+            <span>Color: </span><input type="color" id="color_picker">
+        </div>
+        <div>
+            <span>Brush: </span>
+            <input type="radio" id="contactChoice1"
+            name="contact" value="email">
+            <label for="contactChoice1">Email</label>
+       
+           <input type="radio" id="contactChoice2"
+            name="contact" value="phone">
+           <label for="contactChoice2">Phone</label>
+        </div>
+        <div>
+            <span>Size: </span><input type="number" id="color_picker">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %} 
+    <script src="{{ url_for('static', filename='paint.js')}}"></script> 
+{% endblock %}

@@ -1,0 +1,17 @@
+{
+    "polyline":[
+        [10,10],[100,100]
+    ],
+    "circle":{
+        "center":[100,100],
+        "radius":50
+    },
+    "region":[
+        [0,0],[100,0],[100,100],[0,100]  
+    ],
+    "rect":{
+        "top_left":[50,50],
+        "bottom_right":[150,150]
+    },
+    "background":"0xff0000ff"
+}

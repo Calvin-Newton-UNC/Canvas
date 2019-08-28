@@ -1,0 +1,22 @@
+#properties {
+    width: 400px;
+    height: 400px;
+    /* background: yellow; */
+    /* margin: 2px; */
+
+    border-color: gray;
+    border-width: 2px;
+    border-style: solid;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+#properties>div{
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
