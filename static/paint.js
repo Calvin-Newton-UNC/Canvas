@@ -10,11 +10,6 @@ var properties = {
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-const color_picker = document.getElementById('color_picker');
-
-const color_picker = document.getElementById('color_picker');
-
-
 
 function writeMessage(canvas, message) {
     var context = canvas.getContext('2d');
@@ -60,12 +55,18 @@ canvas.addEventListener('mouseup', function(evt) {
     mouseDown = 0;
 });
 
-color_picker.addEventListener('change', function(event){
+document.getElementById('color_picker').addEventListener('change', function(event){
     properties.color = event.target.value;
 });
 
-color_picker.addEventListener('change', function(event){
-    properties.color = event.target.value;
+document.querySelectorAll('input[name="brush"]').forEach(element => {    
+    element.addEventListener('change', function(event){    
+        properties.brush = document.querySelector('input[name="brush"]:checked').value;
+    });
+});
+
+document.getElementById('brush_width').addEventListener('change', function(event){
+    properties.width = event.target.value;
 });
 
 canvas.addEventListener('mousemove', function(event) {
@@ -97,3 +98,12 @@ canvas.addEventListener('mousemove', function(event) {
 
     }
   }, false);
+
+  //TODO
+  /*
+- undo, redo
+- better toolbar, copy paint
+- shapes
+- transparency
+- 
+  */

@@ -6,30 +6,57 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='paint.css')}}"></link> 
 {% endblock %}
 
-{% block content %}              
-<div style="display: flex;">                          
+{% block content %}          
+<div id="toolbar">
+    <div id="clipboard">
+        
+    </div>
+    <div id="image">
+        
+    </div>
+    <div id="tools">
+        
+    </div>
+    <div id="brushes">
+        
+    </div>
+    <div id="shapes">
+        
+    </div>
+    <div id="size">
+        
+    </div>
+    <div id="colors">
+        
+    </div>
+</div>    
+<div id="drawing">     
+
     <div>
         <canvas id="canvas" width="400px" height="400px"></canvas>
     </div> 
     <div id="properties">
         <div>
-            <span>Properties</span>
+            Properties
         </div>
         <div>
             <span>Color: </span><input type="color" id="color_picker">
         </div>
         <div>
             <span>Brush: </span>
-            <input type="radio" id="contactChoice1"
-            name="contact" value="email">
-            <label for="contactChoice1">Email</label>
-       
-           <input type="radio" id="contactChoice2"
-            name="contact" value="phone">
-           <label for="contactChoice2">Phone</label>
+            <div id="brush">
+                <div>
+                    <input type="radio" value="circle" name="brush" id="circle" checked>
+                    <label for="circle">Circle</label>
+                </div>
+                <div>   
+                    <input type="radio" value="square" name="brush" id="square">
+                    <label for="square">Square</label>   
+                </div>
+            </div>
         </div>
         <div>
-            <span>Size: </span><input type="number" id="color_picker">
+            <span>Size: </span> <input type="number" id="brush_width" value=10>
         </div>
     </div>
 </div>

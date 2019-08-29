@@ -10,13 +10,77 @@
 
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 }
 
 
 #properties>div{
-    height: 100px;
+    flex: 1;
+
     display: flex;
     align-items: center;
 }
+
+#properties>div>span {
+    margin-right: 15px;
+}
+#toolbar{    
+    background-color: rgb(245,246,247);
+    height: 91px;    
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(218,219,220);
+    border-right: none;
+    border-left: none;
+    display: flex;
+}
+
+#toolbar>div {
+    border-right-width: 1px;
+    border-right-color: rgb(218,219,220);
+    border-right-style: solid;
+    height: 100%;
+    /* background: black; */
+}
+#drawing{
+    display: flex;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#drawing>div{    
+    background-color: white;
+}
+
+body{
+    background-color: rgb(200,210,225);
+}
+
+#clipboard {
+    width: 106px;
+}
+
+#image {
+    width: 121px;
+}
+
+#tools {
+    width: 79px;
+}
+
+#brushes {
+    width: 56px;
+}
+
+#shapes {
+    width: 245px;
+}
+
+#size {
+    width: 52px;
+}
+
+#colors {
+    width: 356px;
+}
+
