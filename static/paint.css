@@ -74,6 +74,7 @@ body{
 
 #shapes {
     width: 245px;
+    background-image: url(shapes.png);
 }
 
 #size {

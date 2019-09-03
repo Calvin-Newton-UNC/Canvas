@@ -1,6 +1,8 @@
 
 var cornflower = "#6495ED";
 
+var mode="line";//brush, curve, rectangle, circle, etc.
+
 var properties = {
     "brush":"circle",
     "width":10,
@@ -27,8 +29,24 @@ function getMousePos(canvas, evt) {
     };
   }
 
+function clearCanvas(color="#ffffff"){
+    if(color=="#ffffff"){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    else{
+        drawRect({'top_left':[0, 0], 'bottom_right':[canvas.width, canvas.height]}, color)
+    }
+}
 
 
+function drawLine(line,width=1,color="#000000"){
+    ctx.beginPath(); 
+    ctx.lineWidth = width;
+    ctx.strokeStyle = color;
+    ctx.moveTo(line[0].x,line[0].y);
+    ctx.lineTo(line[1].x,line[1].y);
+    ctx.stroke();
+}
 
 
 function drawRect(rect,color="#000000"){
@@ -71,33 +89,47 @@ document.getElementById('brush_width').addEventListener('change', function(event
 
 canvas.addEventListener('mousemove', function(event) {
     if(mouseDown){
+        
         var mousePos = getMousePos(canvas, event);
         var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
         //writeMessage(canvas, message);
 
-        switch (properties.brush) {
-            case "circle":                       
-                drawCircle({
-                    "center": {"x":mousePos.x, "y":mousePos.y},
-                    "radius": properties.width/2,
-                },properties.color);
-                break;
+        if(mode=="brush"){
+    
+            switch (properties.brush) {
+                case "circle":                       
+                    drawCircle({
+                        "center": {"x":mousePos.x, "y":mousePos.y},
+                        "radius": properties.width/2,
+                    },properties.color);
+                    break;
+    
+                case "square":                    
+                    drawRect({
+                        "top_left": [mousePos.x-properties.width/2,
+                                    mousePos.y-properties.width/2],
+                        "bottom_right": [mousePos.x+properties.width/2,
+                                        mousePos.y+properties.width/2]
+                    },properties.color);
+                    break;        
+                default:
+                    console.error("no brush type for "+properties.brush);
+                    break;
+            }
+    
+        }
+            
+        if(mode=="line"){
 
-            case "square":                    
-                drawRect({
-                    "top_left": [mousePos.x-properties.width/2,
-                                mousePos.y-properties.width/2],
-                    "bottom_right": [mousePos.x+properties.width/2,
-                                    mousePos.y+properties.width/2]
-                },properties.color);
-                break;        
-            default:
-                console.error("no brush type for "+properties.brush);
-                break;
+            if(line.begin){
+
+            }
+
         }
 
     }
-  }, false);
+}, false);
+
 
   //TODO
   /*
