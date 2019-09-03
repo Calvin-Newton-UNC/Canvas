@@ -8,10 +8,12 @@ var properties = {
     "width":10,
     "color":"#000000"
 }
+currentLine={'begin':undefined,'end':undefined};
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+var canvasHistory=[];
 
 function writeMessage(canvas, message) {
     var context = canvas.getContext('2d');
@@ -38,30 +40,47 @@ function clearCanvas(color="#ffffff"){
     }
 }
 
-
-function drawLine(line,width=1,color="#000000"){
-    ctx.beginPath(); 
-    ctx.lineWidth = width;
-    ctx.strokeStyle = color;
-    ctx.moveTo(line[0].x,line[0].y);
-    ctx.lineTo(line[1].x,line[1].y);
-    ctx.stroke();
+function save(){
+    canvasHistory.push(canvas.toDataURL());
 }
 
-
-function drawRect(rect,color="#000000"){
-    ctx.fillStyle = color;
-    ctx.fillRect(rect.top_left[0],rect.top_left[1],rect.bottom_right[0]-rect.top_left[0],rect.bottom_right[1]-rect.top_left[1]);
+function restore(){
+    canvasHistory.pop();
+    var img = new Element('img', {'src':restore_state});
+        img.onload = function() {
+        ctx.clearRect(0, 0, 600, 400);
+        ctx.drawImage(img, 0, 0, 600, 400, 0, 0, 600, 400);  
+    }
 }
 
-function drawCircle(circle,color="#000000"){
+var command = {
 
-    ctx.fillStyle = color;
-    var circlePath= new Path2D();
-    circlePath.arc(circle.center.x, circle.center.y, circle.radius, 0, 2*Math.PI);
-    ctx.fill(circlePath);
+    function drawLine(line,width=1,color="#000000"){
 
+        ctx.beginPath(); 
+        ctx.lineWidth = width;
+        ctx.strokeStyle = color;
+        ctx.moveTo(line[0].x,line[0].y);
+        ctx.lineTo(line[1].x,line[1].y);
+        ctx.stroke();
+    }
+    
+    
+    function drawRect(rect,color="#000000"){
+        ctx.fillStyle = color;
+        ctx.fillRect(rect.top_left[0],rect.top_left[1],rect.bottom_right[0]-rect.top_left[0],rect.bottom_right[1]-rect.top_left[1]);
+    }
+    
+    function drawCircle(circle,color="#000000"){
+    
+        ctx.fillStyle = color;
+        var circlePath= new Path2D();
+        circlePath.arc(circle.center.x, circle.center.y, circle.radius, 0, 2*Math.PI);
+        ctx.fill(circlePath);
+    
+    }
 }
+
 
 var mouseDown = 0;
 
@@ -121,8 +140,12 @@ canvas.addEventListener('mousemove', function(event) {
             
         if(mode=="line"){
 
-            if(line.begin){
-
+            if(currentLine.begin){
+                clearCanvas();
+                drawLine([currentLine.begin, mousePos]);
+            }
+            else{
+                currentLine.begin = mousePos;
             }
 
         }
